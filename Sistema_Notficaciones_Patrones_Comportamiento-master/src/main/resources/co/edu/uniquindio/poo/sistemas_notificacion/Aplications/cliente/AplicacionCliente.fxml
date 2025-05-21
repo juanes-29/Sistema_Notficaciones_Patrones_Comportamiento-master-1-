@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane prefHeight="500.0" prefWidth="432.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.sistemas_notificacion.viewController.AplicacionClienteViewController">
+
+    <children>
+
+        <TextArea fx:id="cuadroPush" editable="false" layoutX="48.0" layoutY="24.0" prefHeight="214.0" prefWidth="331.0" promptText="Aquí aparecerán las notificaciones push" wrapText="true" />
+
+        <Button fx:id="btnCerrarSesion" layoutX="166.0" layoutY="440.0" onAction="#onCerrarSesionClick" prefWidth="100.0" text="Cerrar Sesión" />
+      <Button fx:id="btnHistorial" layoutX="141.0" layoutY="390.0" onAction="#onHistorialAction" prefWidth="150.0" text="Historial  Notificaciones" />
+      <HBox alignment="CENTER_LEFT" layoutX="50.0" layoutY="284.0" spacing="10">
+         <children>
+            <Label minWidth="70" text="Evento:" />
+            <ComboBox fx:id="comboEventos" layoutX="20.0" layoutY="380.0" prefWidth="250" promptText="Seleccione un evento">
+               <items>
+                  <FXCollections fx:factory="observableArrayList">
+                     <String fx:value="Promocion" />
+                     <String fx:value="Seguridad" />
+                     <String fx:value="Informacion" />
+                  </FXCollections>
+               </items>
+            </ComboBox>
+         </children>
+      </HBox>
+      <Button fx:id="btnSuscribirse" layoutX="91.0" layoutY="338.0" onAction="#onSuscribirseAction" prefHeight="26.0" prefWidth="250.0" text="suscribirse/desuscribirse" />
+
+    </children>
+</AnchorPane>

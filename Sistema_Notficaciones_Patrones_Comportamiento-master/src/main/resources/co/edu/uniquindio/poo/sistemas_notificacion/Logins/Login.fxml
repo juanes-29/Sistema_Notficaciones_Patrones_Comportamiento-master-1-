@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.sistemas_notificacion.viewController.LoginViewController">
+
+    <children>
+
+        <Label layoutX="67.0" layoutY="32.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Bienvenido al Sistema de Notificaciones" />
+
+        <Button fx:id="IniciarClienteBoton" layoutX="125.0" layoutY="100.0" onAction="#onClientLogin" prefWidth="150.0" text="Iniciar como Cliente" />
+
+        <Button fx:id="IniciarAdminBoton" layoutX="125.0" layoutY="150.0" onAction="#onAdminLogin" prefWidth="150.0" text="Iniciar como Administrador" />
+
+        <Button fx:id="IniciarInvitadoBoton" layoutX="125.0" layoutY="200.0" onAction="#onGuestAccess" prefWidth="150.0" text="Entrar como Invitado" />
+
+    </children>
+</AnchorPane>

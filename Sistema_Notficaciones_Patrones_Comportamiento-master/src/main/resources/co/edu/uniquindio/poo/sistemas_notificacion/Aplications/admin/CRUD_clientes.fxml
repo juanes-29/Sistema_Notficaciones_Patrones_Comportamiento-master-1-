@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.collections.FXCollections?>
+<AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.sistemas_notificacion.viewController.CRUDClientesViewController">
+
+    <children>
+
+        <Label layoutX="20.0" layoutY="20.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Gestión de Clientes" />
+
+        <TableView fx:id="tablaClientes" layoutX="20.0" layoutY="60.0" prefHeight="220.0" prefWidth="660.0">
+
+            <columns>
+                <TableColumn fx:id="colUsuario" prefWidth="180.0" text="Usuario" />
+                <TableColumn fx:id="colContrasena" prefWidth="180.0" text="Contraseña" />
+                <TableColumn fx:id="colCorreo" prefWidth="300.0" text="Correo" />
+            </columns>
+        </TableView>
+
+        <TextField fx:id="campoUsuario" layoutX="20.0" layoutY="300.0" prefWidth="200.0" promptText="Usuario" />
+
+        <PasswordField fx:id="campoContrasena" layoutX="240.0" layoutY="300.0" prefWidth="200.0" promptText="Contraseña" />
+
+        <TextField fx:id="campoCorreo" layoutX="460.0" layoutY="300.0" prefWidth="220.0" promptText="Correo electrónico" />
+
+        <TextField fx:id="campoNombre" layoutX="20.0" layoutY="340.0" prefWidth="200.0" promptText="Nombre" />
+
+        <TextField fx:id="campoTelefono" layoutX="240.0" layoutY="340.0" prefWidth="200.0" promptText="Teléfono" />
+
+        <ComboBox fx:id="comboTemplate" layoutX="460.0" layoutY="340.0" prefWidth="220.0" promptText="Template">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Cliente"/>
+                </FXCollections>
+            </items>
+        </ComboBox>
+
+        <ComboBox fx:id="comboEstrategia" layoutX="20.0" layoutY="380.0" prefWidth="200.0" promptText="Estrategia">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="EMAIL"/>
+                    <String fx:value="SMS"/>
+                    <String fx:value="PUSH"/>
+                </FXCollections>
+            </items>
+        </ComboBox>
+
+
+        <Button fx:id="btnCrear" layoutX="40.0" layoutY="420.0" onAction="#onCrear" prefWidth="150.0" text="Crear" />
+
+        <Button fx:id="btnActualizar" layoutX="210.0" layoutY="420.0" onAction="#onActualizar" prefWidth="150.0" text="Actualizar" />
+
+        <Button fx:id="btnEliminar" layoutX="380.0" layoutY="420.0" onAction="#onEliminar" prefWidth="150.0" text="Eliminar" />
+
+        <Button fx:id="btnVolver" layoutX="550.0" layoutY="420.0" onAction="#onVolver" prefWidth="120.0" text="Volver" />
+
+    </children>
+
+</AnchorPane>

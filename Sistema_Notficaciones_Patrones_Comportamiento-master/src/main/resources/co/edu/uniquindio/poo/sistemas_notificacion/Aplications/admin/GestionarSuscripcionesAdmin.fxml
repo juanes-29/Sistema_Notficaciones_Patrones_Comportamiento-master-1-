@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.edu.uniquindio.poo.sistemas_notificacion.viewController.GestionarSuscripcionesAdminViewController"
+            prefWidth="600.0" prefHeight="400.0">
+
+    <children>
+
+        <Label fx:id="lblUsuario"
+               layoutX="20.0" layoutY="20.0"
+               style="-fx-font-size: 16px; -fx-font-weight: bold;"
+               text="Usuario: nombre.usuario" />
+
+        <Label layoutX="20.0" layoutY="50.0"
+               style="-fx-font-size: 14px; -fx-font-weight: bold;"
+               text="Eventos" />
+
+        <TableView fx:id="tablaEventos"
+                   layoutX="20.0" layoutY="70.0"
+                   prefWidth="560.0" prefHeight="220.0">
+
+            <columns>
+                <TableColumn fx:id="colTipoEvento" text="Tipo de Evento" prefWidth="280.0"/>
+                <TableColumn fx:id="colSuscrito" text="¿Suscrito?" prefWidth="260.0"/>
+            </columns>
+        </TableView>
+
+        <Button fx:id="btnSuscribirse"
+                layoutX="70.0" layoutY="310.0"
+                prefWidth="120.0"
+                text="Suscribirse"
+                onAction="#onSuscribirseClick" />
+
+        <Button fx:id="btnDesuscribirse"
+                layoutX="400.0" layoutY="310.0"
+                prefWidth="120.0"
+                text="Desuscribirse"
+                onAction="#onDesuscribirseClick" />
+
+        <Button fx:id="btnvolver"
+                layoutX="273.0" layoutY="359.0"
+                mnemonicParsing="false"
+                onAction="#onVolver" text="Volver" />
+
+
+    </children>
+</AnchorPane>
+
