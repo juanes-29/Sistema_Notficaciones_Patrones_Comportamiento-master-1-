@@ -1,28 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.sistemas_notificacion.viewController.ClienteEmailViewController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.sistemas_notificacion.viewController.ClienteEmailViewController">
 
     <children>
 
-        <Label fx:id="lblNombreUsuario" layoutX="20.0" layoutY="20.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Usuario: nombre.usuario" />
+        <Label fx:id="lblNombreUsuario" layoutX="20.0" layoutY="20.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Historial Notificaiones" />
 
         <TableView fx:id="tablaNotificaciones" layoutX="20.0" layoutY="60.0" prefHeight="250.0" prefWidth="560.0">
 
             <columns>
-                <TableColumn fx:id="columnaNombreUsuario" prefWidth="120.0" text="Usuario" />
-                <TableColumn fx:id="columnaMensaje" prefWidth="300.0" text="Mensaje" />
-                <TableColumn fx:id="columnaEstado" prefWidth="120.0" text="Estado" />
+                <TableColumn fx:id="columnaMensaje" prefWidth="559.2000122070312" text="Mensaje" />
             </columns>
         </TableView>
-
-
-        <Button fx:id="btnEliminar" layoutX="20.0" layoutY="330.0" onAction="#onEliminarClick" prefWidth="120.0" text="Eliminar" />
-
-        <Button fx:id="btnMarcarLeida" layoutX="452.0" layoutY="330.0" onAction="#onMarcarLeidoClick" prefWidth="120.0" text="Marcar como Leído" />
         <Button fx:id="btnVolver" layoutX="273.0" layoutY="357.0" mnemonicParsing="false" onAction="#onVolver" text="Volver" />
 
     </children>

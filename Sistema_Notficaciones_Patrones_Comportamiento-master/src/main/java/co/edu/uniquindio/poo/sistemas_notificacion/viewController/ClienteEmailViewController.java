@@ -1,25 +1,36 @@
 package co.edu.uniquindio.poo.sistemas_notificacion.viewController;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import co.edu.uniquindio.poo.sistemas_notificacion.model.Notificacion;
-import co.edu.uniquindio.poo.sistemas_notificacion.model.Cliente;
 import co.edu.uniquindio.poo.sistemas_notificacion.model.Sesion;
 import co.edu.uniquindio.poo.sistemas_notificacion.model.User;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.event.ActionEvent;
-import javafx.scene.control.TableRow;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class ClienteEmailViewController {
+
+    @FXML
+    private ResourceBundle resources;
+
+    @FXML
+    private URL location;
+
+    @FXML
+    private Button btnVolver;
+
+    @FXML
+    private TableColumn<Notificacion, String> columnaMensaje;
 
     @FXML
     private Label lblNombreUsuario;
@@ -27,115 +38,14 @@ public class ClienteEmailViewController {
     @FXML
     private TableView<Notificacion> tablaNotificaciones;
 
-    @FXML
-    private TableColumn<Notificacion, String> columnaNombreUsuario;
-
-    @FXML
-    private TableColumn<Notificacion, String> columnaMensaje;
-
-
-    @FXML
-    private Button btnEliminar;
-
-    @FXML
-    private Button btnVolver;
-
-    @FXML
-    private Button btnMarcarLeida;
-
-    private ObservableList<Notificacion> notificaciones;
-
-    private User userActivo = Sesion.getInstance().getUsuario();
-
-    // Aquí guardamos las notificaciones leídas para colorear
-    private final java.util.Set<Notificacion> notificacionesLeidas = new java.util.HashSet<>();
-
-    @FXML
-    public void initialize() {
-        columnaNombreUsuario.setCellValueFactory(cellData ->
-                new SimpleStringProperty(cellData.getValue().getUsuario().getNombre())
-        );
-
-        columnaMensaje.setCellValueFactory(new PropertyValueFactory<>("mensaje"));
-
-        tablaNotificaciones.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-
-        tablaNotificaciones.setRowFactory(tv -> new TableRow<>() {
-            @Override
-            protected void updateItem(Notificacion item, boolean empty) {
-                super.updateItem(item, empty);
-                if (item == null || empty) {
-                    setStyle("");
-                } else {
-                    if (notificacionesLeidas.contains(item)) {
-                        setStyle("-fx-background-color: lightgray;");
-                    } else {
-                        setStyle("");
-                    }
-                }
-            }
-        });
-
-        btnEliminar.setDisable(true);
-        btnMarcarLeida.setDisable(true);
-
-        tablaNotificaciones.getSelectionModel().selectedItemProperty().addListener((obs, oldSel, newSel) -> {
-            boolean disable = newSel == null;
-            btnEliminar.setDisable(disable);
-            btnMarcarLeida.setDisable(disable);
-        });
-    }
-
-    public void cargarNotificaciones(User userActivo) {
-        lblNombreUsuario.setText("Usuario: " + userActivo.getNombre());
-
-        notificaciones = FXCollections.observableArrayList(obtenerNotificacionesCliente(userActivo));
-        tablaNotificaciones.setItems(notificaciones);
-    }
-
-
-    private java.util.List<Notificacion> obtenerNotificacionesCliente(User userActivo) {
-            return new java.util.ArrayList<>(userActivo.getNotificaciones());
-        }
-
-
-    @FXML
-    private void eliminarNotificacion() {
-        Notificacion seleccionada = tablaNotificaciones.getSelectionModel().getSelectedItem();
-        if (seleccionada != null) {
-            notificaciones.remove(seleccionada);
-            notificacionesLeidas.remove(seleccionada);
-        }
-    }
-
-    @FXML
-    private void marcarLeida() {
-        Notificacion seleccionada = tablaNotificaciones.getSelectionModel().getSelectedItem();
-        if (seleccionada != null) {
-            marcarNotificacionComoLeida(seleccionada);
-            tablaNotificaciones.refresh();
-        }
-    }
-
-    private void marcarNotificacionComoLeida(Notificacion notificacion) {
-        notificacionesLeidas.add(notificacion);
-    }
-
-    // Métodos para los botones que mencionas:
-    @FXML
-    public void onEliminarClick(ActionEvent actionEvent) {
-        eliminarNotificacion();
-    }
-
-    @FXML
-    public void onMarcarLeidoClick(ActionEvent actionEvent) {
-        marcarLeida();
-    }
+    User usuario = Sesion.getInstance().getUsuario();
 
     @FXML
     public void onVolver(ActionEvent actionEvent) {
+
+        Sesion.getInstance().setUsuario(null);
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/poo/sistemas_notificacion/Aplications/cliente/AplicacionCliente.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/poo/sistemas_notificacion/Logins/Login.fxml"));
             Scene newScene = new Scene(loader.load());
 
             Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -148,4 +58,25 @@ public class ClienteEmailViewController {
         }
     }
 
+    @FXML
+    void initialize() {
+        assert btnVolver != null : "fx:id=\"btnVolver\" was not injected: check your FXML file 'ClienteEmail.fxml'.";
+        assert columnaMensaje != null : "fx:id=\"columnaMensaje\" was not injected: check your FXML file 'ClienteEmail.fxml'.";
+        assert lblNombreUsuario != null : "fx:id=\"lblNombreUsuario\" was not injected: check your FXML file 'ClienteEmail.fxml'.";
+        assert tablaNotificaciones != null : "fx:id=\"tablaNotificaciones\" was not injected: check your FXML file 'ClienteEmail.fxml'.";
+
+
+        // Mostrar nombre del usuario en el Label
+        lblNombreUsuario.setText("Usuario: " + usuario.getNombre());
+
+        // Configurar la columna para mostrar el mensaje
+        columnaMensaje.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getMensaje()));
+
+        // Asignar la lista de notificaciones del usuario a la tabla
+        tablaNotificaciones.setItems(javafx.collections.FXCollections.observableArrayList(usuario.getNotificaciones()));
+    }
+
+
 }
+
+

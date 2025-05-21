@@ -85,6 +85,19 @@ public class AplicacionClienteViewController {
     @FXML
     void onHistorialAction(ActionEvent event) {
 
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/poo/sistemas_notificacion/Aplications/cliente/ClienteEmail.fxml"));
+            Scene newScene = new Scene(loader.load());
+
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.setScene(newScene);
+            currentStage.setTitle("CrearNotificacion");
+
+        } catch (IOException e) {
+            System.out.println("Error al cargar la nueva ventana: " + e.getMessage());
+            e.printStackTrace();
+        }
+
     }
 
     @FXML
